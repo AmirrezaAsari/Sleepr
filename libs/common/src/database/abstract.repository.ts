@@ -6,7 +6,7 @@ import { ReservationDocument } from "../../../../apps/reservations/src/models/re
 export abstract class AbstractRepository<TDocument extends AbstractDocument> {
   protected abstract readonly logger: Logger;
 
-  constructor(protected readonly model: Model<ReservationDocument>) {}
+  constructor(protected readonly model: Model<AbstractDocument>) {}
 
   async create(document: Omit<TDocument, '_id'>): Promise<TDocument> {
     const createdDocument = new this.model({
