@@ -12,9 +12,9 @@ export class CreateReservationDto {
 
   @IsString()
   @IsNotEmpty()
-  placeId: Date;
+  placeId: string;
 
   @IsString()
   @IsNotEmpty()
-  invoiceId: Date;
+  invoiceId: string;
 }
