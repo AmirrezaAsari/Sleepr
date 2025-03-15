@@ -17,11 +17,15 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
   @Post()
   async create(@Request() req, @Body() inputs: CreateUserDto): Promise<object> {
-    return this.usersService.create(inputs);
+    // restrict creating duplicate users
+    const user = await this.usersService.create(inputs);
+    delete user['password'];
+    return user;
   }
   @Get()
   @UseGuards(JwtAuthGuard)
   async getUser(@CurrentUser() user: UserDocument) {
+    delete user['password'];
     return user;
   }
 }
